@@ -61,4 +61,5 @@ docker run \
 * Request protected resource
   ![Image](https://github.com/user-attachments/assets/da624728-47ef-4530-b43f-848662c59d5c)
 
-
+* Set up postman to manage the flow to get the access token
+  ![Image](https://github.com/user-attachments/assets/85558436-0a06-4636-8d38-3a65b5673a47)
