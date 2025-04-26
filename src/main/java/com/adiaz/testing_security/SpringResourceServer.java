@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TestingSecurityApplication {
+public class SpringResourceServer {
 
   public static void main(String[] args) {
-    SpringApplication.run(TestingSecurityApplication.class, args);
+    SpringApplication.run(SpringResourceServer.class, args);
   }
 }
