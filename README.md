@@ -3,8 +3,7 @@
 Practice for course:  
 https://www.udemy.com/course/oauth2-in-spring-boot-applications
 
-## OAuth Authorization code flow
-Grant Type
+## OAuth2: Grant Type
 1. Authorization code
 2. PKCE enhanced
 3. Client Credentials
@@ -47,5 +46,19 @@ docker run \
     start-dev
 ```
 * Create client
+  ![Image](https://github.com/user-attachments/assets/3fd9a7e3-8e78-480d-a3c9-3b9ba36078bc)
 
 * Create user
+
+
+## Postman
+* Get auth token  
+![Image](https://github.com/user-attachments/assets/5fc3bd18-3e51-4a53-8828-b1e1c962025a)
+
+* Get Access token  
+![Image](https://github.com/user-attachments/assets/e5bb4f7d-4dbe-4957-b758-40bd076ab369)
+
+* Request protected resource
+  ![Image](https://github.com/user-attachments/assets/da624728-47ef-4530-b43f-848662c59d5c)
+
+
