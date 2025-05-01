@@ -7,6 +7,8 @@
   * [Authorization flow on Postman](#authorization-flow-on-postman)
     * [Flow 1: GET and POST](#flow-1--get-and-post)
     * [Flow 2: using Authorization tool](#flow-2--using-authorization-tool)
+  * [Create Resource Server](#create-resource-server)
+  * [Resource Server: scope based](#resource-server--scope-based)
 <!-- TOC -->
 
 ---
@@ -66,6 +68,7 @@ docker run \
   * user account: http://localhost:8080/realms/my-realm/account
   * authorization_endpoint: http://localhost:8080/realms/my-realm/protocol/openid-connect/auth
   * token_endpoint: http://localhost:8080/realms/my-realm/protocol/openid-connect/token
+  * user_info: http://localhost:8080/realms/my-realm/protocol/openid-connect/userinfo
 
 * Create oauth client
   * On "Capability config", "Client authentication" must be activated.
@@ -92,3 +95,73 @@ docker run \
 * Update client to add `https://oauth.pstmn.io/v1/callback` as valid redirect URI on Keycloak
 * Set up postman to manage the flow to get the access token  
 ![Image](https://github.com/user-attachments/assets/85558436-0a06-4636-8d38-3a65b5673a47)
+
+## Create Resource Server 
+* Create Spring Boot project: https://start.spring.io/
+
+* Add 3 dependencies:
+  * Spring Web
+  * Devtools
+  * Oauth2 Resource Server
+
+* Create Rest controller
+````java
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+@RequestMapping("/users")
+public class MyController {
+
+  @GetMapping("/status")
+  public String checkStatus() {
+    return "OK";
+  }
+
+  @GetMapping("/token")
+  public String showToken(@AuthenticationPrincipal Jwt jwt){
+    System.out.println("JWT -> " + jwt.getClaims());
+    final StringBuilder response = new StringBuilder();
+    jwt.getClaims().forEach((k, v)-> { response.append(k + "->" + v + "\n");} );
+    return response.toString();
+  }
+}
+````
+
+* Add properties with the issuer to validate the access token:
+````properties
+spring.security.oauth2.resourceserver.jwt.issuer-uri=\
+  http://localhost:8080/realms/my-realm
+
+spring.security.oauth2.resourceserver.jwt.jwt-set-uri=\
+  http://localhost:8080/realms/my-realm/protocol/openid-connect/certs
+````
+
+## Resource Server: scope based
+* Scope based is a mechanism on Oauth2 to limit client application access to users account.
+
+* `scope` is a Query Param sent on the auth request, so user need to authorize the client application to access that scope.  
+
+* Scopes is a list of words separate with spaces.
+
+* Adding security configuration
+````java
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@EnableWebSecurity
+public class WebSecurity {
+
+  @Bean
+  SecurityFilterChain configure(HttpSecurity http) throws Exception {
+    http
+            .authorizeHttpRequests(oauthz -> oauthz.anyRequest().authenticated())
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> {}));
+    return http.build();
+  }
+}
+````

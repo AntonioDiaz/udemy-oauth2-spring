@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class MyController {
+
   @GetMapping("/status")
   public String checkStatus() {
     return "OK";
   }
+
   @GetMapping("/token")
   public String showToken(@AuthenticationPrincipal Jwt jwt){
     System.out.println("JWT -> " + jwt.getClaims());
@@ -19,5 +21,4 @@ public class MyController {
     jwt.getClaims().forEach((k, v)-> { response.append(k + "->" + v + "\n");} );
     return response.toString();
   }
-
 }
