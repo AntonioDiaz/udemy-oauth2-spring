@@ -1,15 +1,17 @@
 <h1>Notes for Udemy course: OAuth 2.0 in Spring Boot Applications</h1>
 
 <!-- TOC -->
+  * [Info](#info)
   * [OAuth2: Grant Type](#oauth2--grant-type)
   * [Keycloak Notes](#keycloak-notes)
   * [Authorization flow on Postman](#authorization-flow-on-postman)
     * [Flow 1: GET and POST](#flow-1--get-and-post)
     * [Flow 2: using Authorization tool](#flow-2--using-authorization-tool)
 <!-- TOC -->
+
 ---
 
-## Intro
+## Info
 * Udemy course:  
 https://www.udemy.com/course/oauth2-in-spring-boot-applications  
 
