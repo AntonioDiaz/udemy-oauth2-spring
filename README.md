@@ -7,10 +7,14 @@
     * [Flow 1: GET and POST](#flow-1--get-and-post)
     * [Flow 2: using Authorization tool](#flow-2--using-authorization-tool)
 <!-- TOC -->
+---
 
-Practice for course:  
-https://www.udemy.com/course/oauth2-in-spring-boot-applications
-Instructor Sergey Kargopolov: https://www.linkedin.com/in/kargopolov/
+## Intro
+* Udemy course:  
+https://www.udemy.com/course/oauth2-in-spring-boot-applications  
+
+* Instructor Sergey Kargopolov: 
+https://www.linkedin.com/in/kargopolov/
 
 ## OAuth2: Grant Type
 1. Authorization code
