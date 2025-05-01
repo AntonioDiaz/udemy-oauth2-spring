@@ -15,7 +15,7 @@
 * Udemy course:  
 https://www.udemy.com/course/oauth2-in-spring-boot-applications  
 
-* Instructor Sergey Kargopolov: 
+* Instructor Sergey Kargopolov:  
 https://www.linkedin.com/in/kargopolov/
 
 ## OAuth2: Grant Type
@@ -90,5 +90,5 @@ docker run \
 
 ### Flow 2: using Authorization tool
 * Update client to add `https://oauth.pstmn.io/v1/callback` as valid redirect URI on Keycloak
-* Set up postman to manage the flow to get the access token
+* Set up postman to manage the flow to get the access token  
 ![Image](https://github.com/user-attachments/assets/85558436-0a06-4636-8d38-3a65b5673a47)
