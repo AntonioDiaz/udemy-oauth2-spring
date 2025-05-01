@@ -1,7 +1,16 @@
-# POC of Resource Server using OAuth2 and Spring Boot
+<h1>Notes for Udemy course: OAuth 2.0 in Spring Boot Applications</h1>
+
+<!-- TOC -->
+  * [OAuth2: Grant Type](#oauth2--grant-type)
+  * [Keycloak Notes](#keycloak-notes)
+  * [Authorization flow on Postman](#authorization-flow-on-postman)
+    * [Flow 1: GET and POST](#flow-1--get-and-post)
+    * [Flow 2: using Authorization tool](#flow-2--using-authorization-tool)
+<!-- TOC -->
 
 Practice for course:  
 https://www.udemy.com/course/oauth2-in-spring-boot-applications
+Instructor Sergey Kargopolov: https://www.linkedin.com/in/kargopolov/
 
 ## OAuth2: Grant Type
 1. Authorization code
@@ -45,13 +54,25 @@ docker run \
     quay.io/keycloak/keycloak:26.2.0 \
     start-dev
 ```
-* Create client
-  ![Image](https://github.com/user-attachments/assets/3fd9a7e3-8e78-480d-a3c9-3b9ba36078bc)
+* Create a realm: `my_realm`
+* Useful URLs
+  * well-known: http://localhost:8080/realms/my-realm/.well-known/openid-configuration
+  * user account: http://localhost:8080/realms/my-realm/account
+  * authorization_endpoint: http://localhost:8080/realms/my-realm/protocol/openid-connect/auth
+  * token_endpoint: http://localhost:8080/realms/my-realm/protocol/openid-connect/token
 
-* Create user
+* Create oauth client
+  * On "Capability config", "Client authentication" must be activated.
+  * On tab "Credentials" you can set the `Client secret`.  
+![Image](https://github.com/user-attachments/assets/3fd9a7e3-8e78-480d-a3c9-3b9ba36078bc)  
+![Image](https://github.com/user-attachments/assets/2bc9ddb6-dbdf-4f18-8cde-20d94ac3e4c9)
+
+* Create user, select the new realm  |   
+![Image](https://github.com/user-attachments/assets/566aef10-e9b6-4a48-9a19-bf72936fe590)
 
 
-## Postman
+## Authorization flow on Postman
+### Flow 1: GET and POST
 * Get auth token  
 ![Image](https://github.com/user-attachments/assets/5fc3bd18-3e51-4a53-8828-b1e1c962025a)
 
@@ -59,7 +80,9 @@ docker run \
 ![Image](https://github.com/user-attachments/assets/e5bb4f7d-4dbe-4957-b758-40bd076ab369)
 
 * Request protected resource
-  ![Image](https://github.com/user-attachments/assets/da624728-47ef-4530-b43f-848662c59d5c)
+![Image](https://github.com/user-attachments/assets/da624728-47ef-4530-b43f-848662c59d5c)
 
+### Flow 2: using Authorization tool
+* Update client to add `https://oauth.pstmn.io/v1/callback` as valid redirect URI on Keycloak
 * Set up postman to manage the flow to get the access token
-  ![Image](https://github.com/user-attachments/assets/85558436-0a06-4636-8d38-3a65b5673a47)
+![Image](https://github.com/user-attachments/assets/85558436-0a06-4636-8d38-3a65b5673a47)
