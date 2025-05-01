@@ -1,4 +1,4 @@
-<h1>Notes Udemy course: OAuth 2.0 in Spring Boot Applications</h1>
+<h1>OAuth 2.0 in Spring Boot Applications</h1>
 
 <!-- TOC -->
   * [Info](#info)
