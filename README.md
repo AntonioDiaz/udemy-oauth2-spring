@@ -9,6 +9,7 @@
     * [Flow 2: using Authorization tool](#flow-2--using-authorization-tool)
   * [Create Resource Server](#create-resource-server)
   * [Resource Server: scope based](#resource-server--scope-based)
+  * [Role based access control with Keycloak](#role-based-access-control-with-keycloak)
 <!-- TOC -->
 
 ---
@@ -163,11 +164,16 @@ public class WebSecurity {
   SecurityFilterChain configure(HttpSecurity http) throws Exception {
     http
             .authorizeHttpRequests(oauthz -> oauthz
-                    .requestMatchers(HttpMethod.GET, "/users/status")
-                    .hasAnyAuthority("SCOPE_email")
+                    .requestMatchers(HttpMethod.GET, "/users/status").hasAnyAuthority("SCOPE_email")
                     .anyRequest().authenticated())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> {}));
     return http.build();
   }
 }
 ````
+
+## Role based access control with Keycloak
+* Create User Role  
+![Image](https://github.com/user-attachments/assets/4c02b7f3-167c-49af-a0e9-01271a133dea)
+* Assign role to the user  
+![Image](https://github.com/user-attachments/assets/8fd8450c-0c06-4519-abee-c617810ca09e)
