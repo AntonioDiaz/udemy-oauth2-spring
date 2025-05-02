@@ -177,3 +177,37 @@ public class WebSecurity {
 ![Image](https://github.com/user-attachments/assets/4c02b7f3-167c-49af-a0e9-01271a133dea)
 * Assign role to the user  
 ![Image](https://github.com/user-attachments/assets/8fd8450c-0c06-4519-abee-c617810ca09e)
+* Convert JWT role list into Spring role list, we need to add `ROLE_` as prefix to every role received on the JWT.
+```java
+public class KeycloakRoleConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
+
+  @Override
+  public Collection<GrantedAuthority> convert(Jwt jwt) {
+    Map<String, Object> realmAccess = (Map<String, Object>) jwt.getClaims().get("realm_access");
+    if (realmAccess == null || realmAccess.isEmpty()) {
+      return new ArrayList<>();
+    }
+    Collection<GrantedAuthority> returnValue = ((List<String>) realmAccess.get("roles"))
+        .stream().map(roleName -> "ROLE_" + roleName)
+        .map(SimpleGrantedAuthority::new)
+        .collect(Collectors.toList());
+    return returnValue;
+  }
+}
+```
+
+* Spring code for role validation  
+````java
+@Bean
+SecurityFilterChain configure(HttpSecurity http) throws Exception {
+  JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+  jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new KeycloakRoleConverter());
+  http
+    .authorizeHttpRequests(oauthz -> oauthz
+        .requestMatchers(HttpMethod.GET, "/users/status").hasAnyAuthority("SCOPE_email")
+        .requestMatchers(HttpMethod.GET,"/users/token").hasRole("developer")
+        .anyRequest().authenticated())
+    .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
+  return http.build();
+}
+````
