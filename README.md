@@ -254,7 +254,7 @@ public String deletePre(@PathVariable String id, @AuthenticationPrincipal Jwt jw
 Executes the method and check the security, only returns the value if expression evaluates to true.
 ````java
 @GetMapping(path = "/{id}")
-@PostAuthorize("#id == '1234'")
+@PostAuthorize("returnObject.id == '1234'")
 public User getUser(@PathVariable String id) {
   log.info("***Getting user {}", id);
   return new User(id, "Antoine");

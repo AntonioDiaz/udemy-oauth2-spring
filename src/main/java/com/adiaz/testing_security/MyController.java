@@ -42,9 +42,9 @@ public class MyController {
   }
 
   @GetMapping(path = "/{id}")
-  @PostAuthorize("#id == '1234'")
+  @PostAuthorize("returnObject.id == '1234'")
   public User getUser(@PathVariable String id) {
-    log.info("***Getting user {}", id);
+    log.info("Getting user {}", id);
     return new User(id, "Antoine");
   }
 
