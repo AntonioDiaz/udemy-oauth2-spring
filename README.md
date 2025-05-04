@@ -10,6 +10,10 @@
   * [Create Resource Server](#create-resource-server)
   * [Resource Server: scope based](#resource-server--scope-based)
   * [Role based access control with Keycloak](#role-based-access-control-with-keycloak)
+  * [Resource Server: method level security](#resource-server--method-level-security)
+    * [Secure method](#secure-method)
+    * [PreAuthorize](#preauthorize)
+    * [PostAuthorize](#postauthorize)
 <!-- TOC -->
 
 ---
@@ -196,7 +200,8 @@ public class KeycloakRoleConverter implements Converter<Jwt, Collection<GrantedA
 }
 ```
 
-* Spring code for role validation  
+* Spring code for role validation:
+Note: `.hasRole("developer")` is same as `.hasAuthority("ROLE_developer")`
 ````java
 @Bean
 SecurityFilterChain configure(HttpSecurity http) throws Exception {
@@ -209,5 +214,49 @@ SecurityFilterChain configure(HttpSecurity http) throws Exception {
         .anyRequest().authenticated())
     .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
   return http.build();
+}
+````
+
+## Resource Server: method level security
+https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html#page-title
+
+* Annotations:
+@Secured
+@PreAuthorize
+@PostAuthorize
+
+### Secure method
+* Enable method security
+`@EnableMethodSecurity(securedEnabled=true)`
+
+* Using **Secure** annotation
+````java
+@Secured("ROLE_admin")
+@GetMapping("/delete")
+public String delete() {
+  return "DELETE";
+}
+````
+### PreAuthorize
+* Enable **PreAuthorize** method security
+  `@EnableMethodSecurity(prePostEnabled=true)`
+
+* Adding validation
+````java
+@GetMapping(path = "/delete/{id}")
+@PreAuthorize("hasAuthority('ROLE_admin') and #id == #jwt.subject")
+public String deletePre(@PathVariable String id, @AuthenticationPrincipal Jwt jwt) {
+  return String.format("will delete %s  for user %s", id, jwt.getSubject());
+}
+````
+
+### PostAuthorize
+Executes the method and check the security.
+````java
+@GetMapping(path = "/{id}")
+@PostAuthorize("#id == '1234'")
+public User getUser(@PathVariable String id) {
+  log.info("***Getting user {}", id);
+  return new User(id, "Antoine");
 }
 ````
