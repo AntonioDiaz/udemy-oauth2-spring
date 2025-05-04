@@ -251,7 +251,7 @@ public String deletePre(@PathVariable String id, @AuthenticationPrincipal Jwt jw
 ````
 
 ### PostAuthorize
-Executes the method and check the security.
+Executes the method and check the security, only returns the value if expression evaluates to true.
 ````java
 @GetMapping(path = "/{id}")
 @PostAuthorize("#id == '1234'")
