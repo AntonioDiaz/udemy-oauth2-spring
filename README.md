@@ -2,6 +2,7 @@
 
 <!-- TOC -->
   * [Info](#info)
+  * [Examples](#examples)
   * [OAuth2: Grant Type](#oauth2--grant-type)
   * [Keycloak Notes](#keycloak-notes)
   * [Authorization flow on Postman](#authorization-flow-on-postman)
@@ -26,8 +27,8 @@ https://www.udemy.com/course/oauth2-in-spring-boot-applications
 https://www.linkedin.com/in/kargopolov/
 
 ## Examples
-01_SpringBootResourceServer
-02_SpringBootApiGateway
+[01_SpringBootResourceServer](https://github.com/AntonioDiaz/udemy-oauth2-spring/tree/master/01_SpringBootResouceServer)
+[02_SpringBootApiGateway](https://github.com/AntonioDiaz/udemy-oauth2-spring/tree/master/02_SpringBootApiGateway)
 
 ## OAuth2: Grant Type
 1. Authorization code
