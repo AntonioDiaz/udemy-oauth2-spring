@@ -15,6 +15,7 @@
     * [Secure method](#secure-method)
     * [PreAuthorize](#preauthorize)
     * [PostAuthorize](#postauthorize)
+  * [Spring Boot Api Gateway](#spring-boot-api-gateway)
 <!-- TOC -->
 
 ---
