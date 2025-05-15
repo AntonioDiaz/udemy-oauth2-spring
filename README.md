@@ -288,3 +288,16 @@ flowchart LR
         D --(4) request--> E
         D --> F
 ````
+
+Maven dependencies:
+1. spring-cloud-starter-gateway
+2. spring-boot-starter-actuator
+
+Properties:
+````properties
+spring.cloud.gateway.routes[0].id = user-status-check
+spring.cloud.gateway.routes[0].uri = http://localhost:8081
+spring.cloud.gateway.routes[0].predicates[0] = Path=/users/token
+spring.cloud.gateway.routes[0].predicates[1] = Method=GET
+spring.cloud.gateway.routes[0].filters[0] = RemoveRequestHeader=Cookie
+````
