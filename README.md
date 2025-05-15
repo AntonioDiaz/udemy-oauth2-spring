@@ -265,3 +265,25 @@ public User getUser(@PathVariable String id) {
   return new User(id, "Antoine");
 }
 ````
+
+##  Spring Boot Api Gateway
+Example of a resource server behind a Api Gateway.
+````mermaid
+---
+config:
+      theme: redux
+---
+flowchart LR
+        A("User 🙋")
+        B("Client Application")
+        C("Identity Provider <br> Keycload")
+        D("API Gateway")
+        E("Microservice <br> /photos port - 8081")
+        F("Microservice <br> /comments port - 8082")
+        A --> B
+        B --"(1) get access token"--> C
+        C --(2) return access token--> B
+        B --(3) request--> D
+        D --(4) request--> E
+        D --> F
+````
