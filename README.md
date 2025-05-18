@@ -301,3 +301,25 @@ spring.cloud.gateway.routes[0].predicates[0] = Path=/users/token
 spring.cloud.gateway.routes[0].predicates[1] = Method=GET
 spring.cloud.gateway.routes[0].filters[0] = RemoveRequestHeader=Cookie
 ````
+
+## Spring Boot Eureka server
+* Create new project, https://start.spring.io
+  * Add dependencies:
+    * Eureka discovery client
+    * Eureka Server
+* Add annotation `@EnableEurekaServer` to the spring boot application.
+* Add properties: application.properties
+````properties
+server.port=8090
+eureka.client.registerWithEureka=false
+eureka.client.fetchRegistry=false
+logging.level.com.netflix.eureka=OFF
+logging.level.com.netflix.discovery=OFF
+````
+
+* Add properties: bootstrap.properties
+````properties
+spring.application.name=discovery-service
+````
+
+![Image](https://github.com/user-attachments/assets/16d74794-97f6-4776-b96c-6a16b01ae6db)

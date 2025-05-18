@@ -1,0 +1,1 @@
+# Spring Boot Eureka Server example
