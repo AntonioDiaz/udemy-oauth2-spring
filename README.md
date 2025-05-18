@@ -16,6 +16,7 @@
     * [PreAuthorize](#preauthorize)
     * [PostAuthorize](#postauthorize)
   * [Spring Boot Api Gateway](#spring-boot-api-gateway)
+  * [Spring Boot Eureka server](#spring-boot-eureka-server)
 <!-- TOC -->
 
 ---
