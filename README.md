@@ -34,7 +34,6 @@ https://www.linkedin.com/in/kargopolov/
 * [02_SpringBootApiGateway](https://github.com/AntonioDiaz/udemy-oauth2-spring/tree/master/02_SpringBootApiGateway)
 * [03_SpringBootEurekaServer](https://github.com/AntonioDiaz/udemy-oauth2-spring/tree/master/03_SpringBootEurekaServer)
 
-
 ## OAuth2: Grant Type
 1. Authorization code
 2. PKCE enhanced
