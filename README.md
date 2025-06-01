@@ -324,3 +324,32 @@ spring.application.name=discovery-service
 ````
 
 ![Image](https://github.com/user-attachments/assets/16d74794-97f6-4776-b96c-6a16b01ae6db)
+
+## Spring Boot Eureka client
+* On Project 01_SpringBootResourceServer
+* Add Spring Cloud dependencies:
+```xml
+<dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+* Add dependence to pom:
+````xml
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+````
+
+* Add annotation `@EnableDiscoveryClient`
+
+* Service registered on Eureka server
+![Image](https://github.com/user-attachments/assets/be39a944-ac45-409c-adc1-e90f4dcbde90)

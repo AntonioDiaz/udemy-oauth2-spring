@@ -23,7 +23,7 @@ public class WebSecurity {
     http
         .authorizeHttpRequests(oauthz -> oauthz
             .requestMatchers(HttpMethod.GET, "/users/status")
-              .hasAnyAuthority("SCOPE_email")
+              .hasAnyAuthority("email")
             .requestMatchers(HttpMethod.GET,"/users/token")
               .hasRole("developer")
             .anyRequest().authenticated())
