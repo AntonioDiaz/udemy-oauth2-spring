@@ -17,6 +17,7 @@
     * [PostAuthorize](#postauthorize)
   * [Spring Boot Api Gateway](#spring-boot-api-gateway)
   * [Spring Boot Eureka server](#spring-boot-eureka-server)
+  * [Spring Boot Eureka client](#spring-boot-eureka-client)
 <!-- TOC -->
 
 ---
@@ -31,6 +32,8 @@ https://www.linkedin.com/in/kargopolov/
 ## Examples
 * [01_SpringBootResourceServer](https://github.com/AntonioDiaz/udemy-oauth2-spring/tree/master/01_SpringBootResouceServer)  
 * [02_SpringBootApiGateway](https://github.com/AntonioDiaz/udemy-oauth2-spring/tree/master/02_SpringBootApiGateway)
+* [03_SpringBootEurekaServer](https://github.com/AntonioDiaz/udemy-oauth2-spring/tree/master/03_SpringBootEurekaServer)
+
 
 ## OAuth2: Grant Type
 1. Authorization code
