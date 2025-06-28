@@ -355,3 +355,39 @@ spring.application.name=discovery-service
 
 * Service registered on Eureka server
 ![Image](https://github.com/user-attachments/assets/be39a944-ac45-409c-adc1-e90f4dcbde90)
+
+## Spring Boot MVC
+### Get Albums flow
+```mermaid
+---
+config:
+      theme: redux
+---
+flowchart LR
+        user("User 🙋")
+        spring("Spring Boot MVC")
+        oauth("OAuth2 Auth Server")
+        user_login("User Login")
+        api("API Gateway")
+        server("Albums resource server")
+        user --"(1) get albums"--> spring
+        spring --"response" --> user
+        spring --(2)--> oauth
+        oauth --(4)--> spring
+        oauth --(3)-->user_login
+        user_login --"ok"--> oauth
+        spring --"(5) jwt"--> api
+        api --(6) jwt--> server
+        server --(7) validate--> oauth
+        oauth --(8) jwt ok--> server
+        server --"(9)"--> api
+        api --"(10) response"--> spring
+```
+### Steps:
+* Create project structure
+  * Maven dependencies
+    * ``spring web``
+    * `thymeleaf`
+    * `devTools`
+* Create Controller
+* Create Template
