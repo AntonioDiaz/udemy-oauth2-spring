@@ -18,6 +18,10 @@
   * [Spring Boot Api Gateway](#spring-boot-api-gateway)
   * [Spring Boot Eureka server](#spring-boot-eureka-server)
   * [Spring Boot Eureka client](#spring-boot-eureka-client)
+  * [Spring Boot MVC](#spring-boot-mvc)
+    * [Get Albums flow](#get-albums-flow)
+    * [Steps](#steps)
+    * [Controller](#controller)
 <!-- TOC -->
 
 ---
@@ -383,7 +387,7 @@ flowchart LR
         server --"(9)"--> api
         api --"(10) response"--> spring
 ```
-### Steps:
+### Steps
 * Create project structure
   * Maven dependencies
     * ``spring web``
@@ -391,3 +395,5 @@ flowchart LR
     * `devTools`
 * Create Controller
 * Create Template
+
+### Controller
