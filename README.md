@@ -355,3 +355,14 @@ spring.application.name=discovery-service
 
 * Service registered on Eureka server
 ![Image](https://github.com/user-attachments/assets/be39a944-ac45-409c-adc1-e90f4dcbde90)
+
+## Spring Boot MVC
+### Get Albums flow
+### Steps:
+* Create project structure
+  * Maven dependencies
+    * ``spring web``
+    * `thymeleaf`
+    * `devTools`
+* Create Controller
+* Create Template
