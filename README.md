@@ -358,7 +358,6 @@ spring.application.name=discovery-service
 
 ## Spring Boot MVC
 ### Get Albums flow
-<<<<<<< HEAD
 ```mermaid
 ---
 config:
@@ -384,8 +383,6 @@ flowchart LR
         server --"(9)"--> api
         api --"(10) response"--> spring
 ```
-=======
->>>>>>> 7d5892a5f5be798a5f817bf15fca4c22fbbdb51b
 ### Steps:
 * Create project structure
   * Maven dependencies
