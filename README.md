@@ -286,14 +286,19 @@ flowchart LR
         B("Client Application")
         C("Identity Provider <br> Keycload")
         D("API Gateway")
-        E("Microservice <br> /photos port - 8081")
-        F("Microservice <br> /comments port - 8082")
+        subgraph microservices; MS1; MS2; MS3; MS4; end
+        MS1("port: 8081<br> /photos")
+        MS2("port: 8082<br> /comments")
+        MS3("port: 8083<br> /albums")
+        MS4("port: 8084<br> /users")
         A --> B
         B --"(1) get access token"--> C
         C --(2) return access token--> B
         B --(3) request--> D
-        D --(4) request--> E
-        D --> F
+        D --(4)--> MS1
+        D --(5)--> MS2
+        D --(6)--> MS3
+        D --(7)--> MS4
 ````
 
 Maven dependencies:
@@ -310,6 +315,9 @@ spring.cloud.gateway.routes[0].filters[0] = RemoveRequestHeader=Cookie
 ````
 
 ## Spring Boot Eureka server
+In microservices architecture, a Eureka server acts as a service registry and discovery server. 
+It's essentially a phone book for your microservices, allowing them to register themselves and discover other services dynamically. 
+This eliminates the need for hardcoded service locations, making the system more flexible and scalable.
 * Create new project, https://start.spring.io
   * Add dependencies:
     * Eureka discovery client
