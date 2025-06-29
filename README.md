@@ -375,17 +375,11 @@ flowchart LR
         api("API Gateway")
         server("Albums resource server")
         user --"(1) get albums"--> spring
-        spring --"response" --> user
-        spring --(2)--> oauth
-        oauth --(4)--> spring
-        oauth --(3)-->user_login
-        user_login --"ok"--> oauth
-        spring --"(5) jwt"--> api
-        api --(6) jwt--> server
-        server --(7) validate--> oauth
-        oauth --(8) jwt ok--> server
-        server --"(9)"--> api
-        api --"(10) response"--> spring
+        spring --"response" ----> user
+        spring --"(2) JWT"----> oauth <--> user_login
+        oauth --(3)--> spring
+        spring --(4)----> api <--"(5)"--> server
+        api --(6)--> spring
 ```
 ### Steps
 * Create project structure
