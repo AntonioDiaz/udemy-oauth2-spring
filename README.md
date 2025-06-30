@@ -401,10 +401,9 @@ config:
 flowchart LR
         user("User 🙋")
         spring("Spring Boot MVC")
-        oauth("OAuth2 Auth Server")
-        user_login("User Login")
         api("API Gateway")
         server("Albums resource server")
+        subgraph authentication; oauth; user_login; end
         user --"(1) get albums"--> spring
         spring --"response" ----> user
         spring --"(2)"----> oauth <--> user_login
@@ -412,6 +411,7 @@ flowchart LR
         spring --(4) JWT----> api <--"(5)"--> server
         api --(6)--> spring
         server --validate JWT--> oauth
+        user <----> user_login
 ```
 ### Steps
 * Create project structure
