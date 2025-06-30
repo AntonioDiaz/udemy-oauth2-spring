@@ -318,6 +318,29 @@ spring.cloud.gateway.routes[0].filters[0] = RemoveRequestHeader=Cookie
 In microservices architecture, a Eureka server acts as a service registry and discovery server. 
 It's essentially a phone book for your microservices, allowing them to register themselves and discover other services dynamically. 
 This eliminates the need for hardcoded service locations, making the system more flexible and scalable.
+
+````mermaid
+---
+config:
+      theme: redux
+---
+flowchart LR
+      user("Mobile app 🙋")
+      api("API Gateway")
+      eureka("Eureka Server")
+      user --request-->api
+      instance_1("Albums <br> localhost:8081")
+      instance_2("Albums <br> localhost:8082")
+      instance_3("Albums <br> localhost:8083")
+      api --> instance_1
+      api <--> eureka
+      eureka <--register--> instance_1
+      eureka <--register--> instance_2
+      eureka <--register--> instance_3
+      api --> instance_3
+````
+
+
 * Create new project, https://start.spring.io
   * Add dependencies:
     * Eureka discovery client
